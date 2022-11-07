@@ -28,15 +28,15 @@ def get_responce_from_model_server(msg):
     headers = {"content-type": "application/json"}
     json_response = requests.post(
         tenorflow_url, data=data, headers=headers)
-    predictions = json.loads(json_response.text)
+    predictions = json.loads(json_response.text)['predictions']
     return predictions
 
 # create a dictionory of predection and class name
 
 
-def get_prediction_dict(predictions):
+def get_prediction_dict(prediction):
     prediction_dict = {}
-    for i, p in enumerate(predictions[0]):
+    for i, p in enumerate(prediction[0]):
         prediction_dict[classes[i]] = p
     return prediction_dict
 
